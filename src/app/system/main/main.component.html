@@ -8,7 +8,7 @@
 
     <div *ngFor="let i of renderPage(), let idx = index" class="uk-width-1-5">
         <div style="margin: 5px;">
-            <div class="uk-card uk-card-hover uk-card-body uk-card-primary">
+            <div class="uk-card uk-card-hover uk-card-body uk-card-primary" id="{{idx}}">
                 <div class="img">img</div>
                 <h3 class="uk-card-title">{{i.Name}}</h3>
                 <ul class="uk-list">
@@ -22,7 +22,7 @@
                     <li>Price: {{i.Price}} {{i.Currency}}</li>
                 </ul>
                 <div class="uk-flex uk-flex-around">
-                    <button class="uk-button uk-button-secondary uk-button-small">Edit</button>
+                    <button class="uk-button uk-button-secondary uk-button-small" (click)="onEditCar(idx)">Edit</button>
                     <button class="uk-button uk-button-danger uk-button-small">Delete</button>
                 </div>
             </div>

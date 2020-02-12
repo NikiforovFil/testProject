@@ -27,14 +27,23 @@ export class MainComponent implements OnInit {
   }
 
   renderPage(): Car[] {
-    let firstIndex = this.currentPage === 1 ? 0 : this.currentPage;
-    let secondIndex = firstIndex + this.carsPageAmount + 1;
+    let firstIndex = this.currentPage === 1 ? 0 : this.currentPage * this.carsPageAmount;
+    let secondIndex = firstIndex + this.carsPageAmount;
     return this.carsData.slice(firstIndex, secondIndex);
   }
 
   onChangeCurrentPage(data) {
     this.currentPage = data
     console.log(data)
+    this.carsData.slice(0, 30).map(el => {
+      console.log(el.Name)
+
+    })
+  }
+  onEditCar(i) {
+    let globalIndex = i + (this.currentPage - 1) * this.carsPageAmount;
+    console.log(globalIndex)
+    console.log(this.carsData[globalIndex].Name)
   }
 
   ngOnDestroy() {
