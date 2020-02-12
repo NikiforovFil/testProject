@@ -1,0 +1,27 @@
+<div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
+    <app-header></app-header>
+</div>
+
+<div class="uk-flex uk-flex-around uk-flex-wrap uk-flex-wrap-around">
+
+    <div *ngFor="let i of carsData, let idx = index"class="uk-width-1-5">
+        <div>
+            <div class="uk-card uk-card-hover uk-card-body uk-card-primary">
+                <div class="img">img</div>
+                <h3 class="uk-card-title">{{i.Name}}</h3>
+                <ul class="uk-list">
+                    <li>Origin: {{i.Origin}}</li>
+                    <li>Year: {{i.Year}}</li>
+                    <li>Acceleration: {{i.Acceleration}}</li>
+                    <li>Cylinders: {{i.Cylinders}}</li>
+                    <li>Displacement: {{i.Displacement}}</li>
+                    <li>Horsepower: {{i.Horsepower}}</li>
+                    <li>Weight_in_lbs: {{i.Weight_in_lbs}}</li>
+                    <li>Price: {{i.Price}} {{i.Currency}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
