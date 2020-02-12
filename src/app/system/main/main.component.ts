@@ -10,7 +10,9 @@ import { FormsModule, ReactiveFormsModule, NgForm, FormControl } from '@angular/
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  s1: Subscription;
+  sub1: Subscription;
+  sub2: Subscription;
+  sub3: Subscription;
   carsData: Car[];
   carsPageAmount: number = 10;
   currentPage: number = 1;
@@ -22,7 +24,7 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.s1 = this.carService.getCars().subscribe((data: Car[]) => {
+    this.sub1 = this.carService.getCars().subscribe((data: Car[]) => {
       this.carsData = data;
       this.isLoaded = true;
     });
@@ -36,7 +38,6 @@ export class MainComponent implements OnInit {
 
   onChangeCurrentPage(data) {
     this.currentPage = data
-    console.log(data)
     this.carsData.slice(0, 30).map(el => {
       console.log(el.Name)
 
@@ -44,20 +45,16 @@ export class MainComponent implements OnInit {
   }
 
   onEditCar() {
-    // let globalIndex = i + (this.currentPage - 1) * this.carsPageAmount;
-    // console.log(globalIndex)
-    // console.log(this.carsData[globalIndex].Name)
-
-    // let { Name } = form.value;
-    console.log(this.editCar)
-
+    this.sub2 = this.carService.editCars(this.editCar).subscribe();
   }
 
   onDeleteCar() {
-
+    this.sub3 = this.carService.deleteCars(this.editCar).subscribe();
   }
 
   ngOnDestroy() {
-    if (this.s1) this.s1.unsubscribe();
+    if (this.sub1) this.sub1.unsubscribe();
+    if (this.sub2) this.sub1.unsubscribe();
+    if (this.sub3) this.sub1.unsubscribe();
   }
 }

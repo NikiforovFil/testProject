@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { Car } from '../models/car.model';
 import { CarService } from '../../services/car.service';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnDestroy {
   @Input() currentPage: number;
   @Input() carsPageAmount: number;
 
@@ -35,10 +35,9 @@ export class HeaderComponent {
   }
 
   onAddCar() {
-    console.log(this.addCar)
-    this.sub = this.carService.addCars(this.addCar).subscribe((cars:Car[]) => {
-      console.log('add')
-    })
-
+    this.sub = this.carService.addCars(this.addCar).subscribe()
+  }
+  ngOnDestroy() {
+    if (this.sub) this.sub.unsubscribe();
   }
 }

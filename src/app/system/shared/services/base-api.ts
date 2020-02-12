@@ -13,14 +13,12 @@ export class BaseApi {
     public get(): Observable<any> {
         return this.http.get<any>(this.baseUrl);
     }
-
+   
     public post(data: Car): Observable<any> {
         return this.http.post<any>(this.baseUrl, data);
     }
 
     public put(data: any = {}): Observable<any> {
-        console.log(data)
-        console.log(this.baseUrl)
         return this.http.put<any>(this.baseUrl, data);
     }
 }
