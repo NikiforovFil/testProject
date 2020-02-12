@@ -21,6 +21,10 @@
                         </ul>
                     </div>
                 </div>
+                <div class="uk-text-right" style="margin-left: 20px;">
+                    <button class="uk-button uk-button-default" type="button" uk-toggle="target: #modal-add">Add
+                        car</button>
+                </div>
             </div>
 
             <ul class="uk-pagination uk-flex-right">
@@ -34,5 +38,53 @@
                 <li><a href="#" (click)="nextPage()"><span uk-pagination-next></span></a></li>
             </ul>
         </div>
+    </div>
+</div>
+
+
+
+<div id="modal-add" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Add car</h2>
+        <form>
+            <fieldset class="uk-fieldset">
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="img URL">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Origin" name="Origin" [(ngModel)]="addCar.Origin">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Year" name="Year" [(ngModel)]="addCar.Year">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Acceleration" name="Acceleration"
+                        [(ngModel)]="addCar.Acceleration">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Displacement" name="Displacement"
+                        [(ngModel)]="addCar.Displacement">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Horsepower" name="Horsepower"
+                        [(ngModel)]="addCar.Horsepower">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Price" name="Price" [(ngModel)]="addCar.Price">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Currency" name="Price" [(ngModel)]="addCar.Currency">
+                </div>
+
+                <!-- <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                    <label><input class="uk-radio" type="radio" name="USD" checked [(ngModel)]="addCar.Currency"> USD</label>
+                    <label><input class="uk-radio" type="radio" name="EUR" [(ngModel)]="addCar.Currency"> EUR</label>
+                </div> -->
+            </fieldset>
+        </form>
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button class="uk-button uk-button-primary" type="button" (click)="onAddCar()">Save</button>
+        </p>
     </div>
 </div>

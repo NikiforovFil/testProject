@@ -1,4 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Car } from '../models/car.model';
+import { CarService } from '../../services/car.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +14,9 @@ export class HeaderComponent {
 
   @Output() newCurrentPage = new EventEmitter<number>();
   sortType: String = 'Actual';
-
+  addCar: Car = new Car();
+  sub: Subscription;
+  constructor(private carService: CarService) { }
   setSortType(data): void {
     this.sortType = data;
   }
@@ -27,5 +32,13 @@ export class HeaderComponent {
   setPage(page) {
     this.currentPage = page;
     this.newCurrentPage.emit(page);
+  }
+
+  onAddCar() {
+    console.log(this.addCar)
+    this.sub = this.carService.addCars(this.addCar).subscribe((cars:Car[]) => {
+      console.log('add')
+    })
+
   }
 }

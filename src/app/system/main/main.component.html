@@ -1,4 +1,5 @@
-<app-header [carsPageAmount]="carsPageAmount" [currentPage]="currentPage" (newCurrentPage)='onChangeCurrentPage($event)'></app-header>
+<app-header [carsPageAmount]="carsPageAmount" [currentPage]="currentPage"
+    (newCurrentPage)='onChangeCurrentPage($event)'></app-header>
 
 <div *ngIf="!isLoaded">
     <h1>Loading....</h1>
@@ -22,11 +23,73 @@
                     <li>Price: {{i.Price}} {{i.Currency}}</li>
                 </ul>
                 <div class="uk-flex uk-flex-around">
-                    <button class="uk-button uk-button-secondary uk-button-small" (click)="onEditCar(idx)">Edit</button>
-                    <button class="uk-button uk-button-danger uk-button-small">Delete</button>
+                    <button class="uk-button uk-button-secondary uk-button-small" type="button"
+                        uk-toggle="target: #modal-edit" (click)="editCar = i">Edit</button>
+                    <button class="uk-button uk-button-danger uk-button-small" type="button"
+                        uk-toggle="target: #modal-delete" (click)="editCar = i">Delete</button>
                 </div>
             </div>
         </div>
     </div>
 
+</div>
+
+
+<div id="modal-edit" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Edit car</h2>
+
+        <form >
+            <fieldset class="uk-fieldset">
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="img URL">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Origin" name="Origin" [(ngModel)]="editCar.Origin">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Year" name="Year" [(ngModel)]="editCar.Year">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Acceleration" name="Acceleration"
+                        [(ngModel)]="editCar.Acceleration">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Displacement" name="Displacement"
+                        [(ngModel)]="editCar.Displacement">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Horsepower" name="Horsepower"
+                        [(ngModel)]="editCar.Horsepower">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Price" name="Price" [(ngModel)]="editCar.Price">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Currency" name="Price" [(ngModel)]="editCar.Currency">
+                </div>
+
+                <!-- <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                    <label><input class="uk-radio" type="radio" name="USD" checked [(ngModel)]="addCar.Currency"> USD</label>
+                    <label><input class="uk-radio" type="radio" name="EUR" [(ngModel)]="addCar.Currency"> EUR</label>
+                </div> -->
+            </fieldset>
+        </form>
+
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button class="uk-button uk-button-primary uk-modal-close" type="button" (click)='onEditCar()'>Save</button>
+        </p>
+    </div>
+</div>
+
+<div id="modal-delete" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Delete car</h2>
+        <legend class="uk-legend">Are you sure?</legend>
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button class="uk-button uk-button-danger" type="button" (click)="onDeleteCar()">Delete</button>
+        </p>
+    </div>
 </div>

@@ -10,13 +10,20 @@ export class CarService extends BaseApi {
     constructor(public http: HttpClient) {
         super(http)
     }
-
     getCars(): Observable<Car[]> {
-        return this.get('assets/cars.json');
+        return this.get();
     };
 
-    // editCars() {
+    addCars(car: Car) {
+        return this.put(car);
+    }
 
-    // }
+    editCars(car: Car) {
+        return this.put(car);
+    }
+
+    deleteCars(car: Car) {
+        return this.put(car);
+    }
 
 } 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarService } from '../shared/services/car.service';
 import { Subscription } from 'rxjs';
 import { Car } from '../shared/component/models/car.model';
+import { FormsModule, ReactiveFormsModule, NgForm, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-main',
@@ -13,6 +14,7 @@ export class MainComponent implements OnInit {
   carsData: Car[];
   carsPageAmount: number = 10;
   currentPage: number = 1;
+  editCar: Car = new Car();
   isLoaded: boolean = false;
 
   constructor(
@@ -40,10 +42,19 @@ export class MainComponent implements OnInit {
 
     })
   }
-  onEditCar(i) {
-    let globalIndex = i + (this.currentPage - 1) * this.carsPageAmount;
-    console.log(globalIndex)
-    console.log(this.carsData[globalIndex].Name)
+
+  onEditCar() {
+    // let globalIndex = i + (this.currentPage - 1) * this.carsPageAmount;
+    // console.log(globalIndex)
+    // console.log(this.carsData[globalIndex].Name)
+
+    // let { Name } = form.value;
+    console.log(this.editCar)
+
+  }
+
+  onDeleteCar() {
+
   }
 
   ngOnDestroy() {

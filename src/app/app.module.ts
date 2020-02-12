@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './system/main/main.component';
 import { HeaderComponent } from './system/shared/component/header/header.component';
 import { CarService } from './system/shared/services/car.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { CarService } from './system/shared/services/car.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [CarService, ],
