@@ -1,1 +1,38 @@
-<h1>Каталог автомобилей</h1>
+<div style="padding: 20px ">
+    <div class="uk-flex uk-flex-around uk-flex-wrap uk-flex-wrap-around">
+        <div class="uk-width-1-1 uk-text-center">
+            <h1>Cars for sale</h1>
+        </div>
+        <div class="uk-width-1-1">
+            sort by
+            <div class="uk-button-group">
+                <div class="uk-inline">
+                    <button class="uk-button uk-button-default" type="button">
+                        {{sortType}}
+                        <span uk-icon="icon:  triangle-down"></span>
+                    </button>
+                    <div uk-dropdown="mode: click; boundary: ! .uk-button-group; boundary-align: true;">
+                        <ul class="uk-nav uk-dropdown-nav">
+                            <li class="uk-active" (click)="setSortType('Actual')"><a>Actual</a></li>
+                            <li class="uk-nav-divider"></li>
+                            <li (click)="setSortType('Price')"><a>Price</a></li>
+                            <li class="uk-nav-divider"></li>
+                            <li (click)="setSortType('Date')"><a>Date</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="uk-pagination uk-flex-right">
+                <li><a href="#" (click)="prevPage()"><span uk-pagination-previous></span></a></li>
+                <li><a href="#" (click)="setPage(1)">1</a></li>
+                <li><a href="#" (click)="setPage(2)">2</a></li>
+                <li><a href="#" (click)="setPage(3)">3</a></li>
+                <li><a href="#" (click)="setPage(4)">4</a></li>
+                <li><a href="#" (click)="setPage(5)">5</a></li>
+                <li><a href="#" (click)="setPage(6)">6</a></li>
+                <li><a href="#" (click)="nextPage()"><span uk-pagination-next></span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
