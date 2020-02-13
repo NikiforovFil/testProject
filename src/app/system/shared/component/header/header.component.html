@@ -1,11 +1,59 @@
-<div style="padding: 20px ">
-    <div class="uk-flex uk-flex-around uk-flex-wrap uk-flex-wrap-around">
-        <div class="uk-width-1-1 uk-text-center">
-            <h1>Cars for sale</h1>
+<div>
+    <nav class="uk-navbar-container uk-margin" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active"><a href="#"><span uk-icon="home"></span>Catalog</a></li>
+                <li>
+                    <a href="#"> <span uk-icon="world"></span>Shops</a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li class="uk-active"><a href="#">item</a></li>
+                            <li><a href="#">item</a></li>
+                            <li><a href="#">item</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#"><span uk-icon="bolt"></span>Delivery</a></li>
+                <li>
+                    <a href="#"><span uk-icon="cart"></span>Your cart</a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav" *ngIf="cart.length === 0">
+                            <li class="uk-flex uk-flex-between">Empty</li>
+                        </ul>
+                        <ul class="uk-nav uk-navbar-dropdown-nav" *ngFor="let i of cart">
+                            <li class="uk-flex uk-flex-between" *ngIf="cart.length === 0">Empty></li>
+                            <li class="uk-flex uk-flex-between">{{i.Name}} <span class="delCart" uk-icon="trash"
+                                    (click)="deleteFromCart(i.id)"></span></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <div class="uk-width-1-1">
+
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="#"> <span uk-icon="user"></span> User</a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li class="uk-active"><a href="#">Active</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li class="uk-nav-header">Header</li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li class="uk-nav-divider"></li>
+                            <li><a href="#">Item</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="uk-flex uk-flex-between sort-row">
+        <div>
             sort by
-            <div class="uk-button-group">
+            <div class="uk-button-group" style="margin-left: 5px;">
                 <div class="uk-inline">
                     <button class="uk-button uk-button-default" type="button">
                         {{sortType}}
@@ -22,12 +70,14 @@
                     </div>
                 </div>
                 <div class="uk-text-right" style="margin-left: 20px;">
-                    <button class="uk-button uk-button-default" type="button" uk-toggle="target: #modal-add">Add
+                    <button class="uk-button btn-success" type="button" uk-toggle="target: #modal-add">Add
                         car</button>
                 </div>
             </div>
+        </div>
 
-            <ul class="uk-pagination uk-flex-right">
+        <div class="pagination-wrapper">
+            <ul class="uk-pagination">
                 <li><a href="#" (click)="prevPage()"><span uk-pagination-previous></span></a></li>
                 <li><a href="#" (click)="setPage(1)">1</a></li>
                 <li><a href="#" (click)="setPage(2)">2</a></li>
@@ -52,6 +102,9 @@
                     <input class="uk-input" type="text" placeholder="img URL">
                 </div>
                 <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Name" name="Name" [(ngModel)]="addCar.Name">
+                </div>
+                <div class="uk-margin">
                     <input class="uk-input" type="text" placeholder="Origin" name="Origin" [(ngModel)]="addCar.Origin">
                 </div>
                 <div class="uk-margin">
@@ -73,18 +126,16 @@
                     <input class="uk-input" type="text" placeholder="Price" name="Price" [(ngModel)]="addCar.Price">
                 </div>
                 <div class="uk-margin">
-                    <input class="uk-input" type="text" placeholder="Currency" name="Price" [(ngModel)]="addCar.Currency">
+                    <input class="uk-input" type="text" placeholder="Currency" name="Price"
+                        [(ngModel)]="addCar.Currency">
                 </div>
-
-                <!-- <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                    <label><input class="uk-radio" type="radio" name="USD" checked [(ngModel)]="addCar.Currency"> USD</label>
-                    <label><input class="uk-radio" type="radio" name="EUR" [(ngModel)]="addCar.Currency"> EUR</label>
-                </div> -->
             </fieldset>
         </form>
         <p class="uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <button class="uk-button uk-button-primary" type="button" (click)="onAddCar()">Save</button>
+            <button class="uk-button uk-button-default uk-modal-close" type="button"
+                style="margin-right: 20px;">Cancel</button>
+            <button class="uk-button uk-button-primary btn-success uk-modal-close" type="button"
+                (click)="onAddCar()">Save</button>
         </p>
     </div>
 </div>

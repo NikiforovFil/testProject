@@ -10,6 +10,7 @@ import { MainComponent } from './system/main/main.component';
 import { HeaderComponent } from './system/shared/component/header/header.component';
 import { CarService } from './system/shared/services/car.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CartService } from './system/shared/services/cart.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [CarService, ],
+  providers: [CarService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

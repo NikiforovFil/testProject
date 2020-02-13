@@ -1,5 +1,5 @@
-<app-header [carsPageAmount]="carsPageAmount" [currentPage]="currentPage"
-    (newCurrentPage)='onChangeCurrentPage($event)'></app-header>
+<app-header [carsPageAmount]="carsPageAmount" [currentPage]="currentPage" (newCurrentPage)='onChangeCurrentPage($event)'
+    (pageChange)='ngOnInit()'></app-header>
 
 <div *ngIf="!isLoaded">
     <h1>Loading....</h1>
@@ -10,8 +10,8 @@
     <div *ngFor="let i of renderPage(), let idx = index" class="uk-width-1-5">
         <div style="margin: 5px;">
             <div class="uk-card uk-card-hover uk-card-body uk-card-primary" id="{{idx}}">
-                <div class="img">img</div>
                 <h3 class="uk-card-title">{{i.Name}}</h3>
+                <img src="../../../assets/car.jpg" alt="car">
                 <ul class="uk-list">
                     <li>Origin: {{i.Origin}}</li>
                     <li>Year: {{i.Year}}</li>
@@ -23,10 +23,12 @@
                     <li>Price: {{i.Price}} {{i.Currency}}</li>
                 </ul>
                 <div class="uk-flex uk-flex-around">
+                    <button class="uk-button uk-button-small btn-success" type="button" (click)="onAddToCart(i)">
+                        Add to cart</button>
                     <button class="uk-button uk-button-secondary uk-button-small" type="button"
-                        uk-toggle="target: #modal-edit" (click)="editCar = i">Edit</button>
+                        uk-toggle="target: #modal-edit" (click)="setEditCar(i)">Edit</button>
                     <button class="uk-button uk-button-danger uk-button-small" type="button"
-                        uk-toggle="target: #modal-delete" (click)="editCar = i">Delete</button>
+                        uk-toggle="target: #modal-delete" (click)="setEditCar(i)">Delete</button>
                 </div>
             </div>
         </div>
@@ -39,10 +41,13 @@
     <div class="uk-modal-dialog uk-modal-body">
         <h2 class="uk-modal-title">Edit car</h2>
 
-        <form >
+        <form>
             <fieldset class="uk-fieldset">
                 <div class="uk-margin">
                     <input class="uk-input" type="text" placeholder="img URL">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" type="text" placeholder="Origin" name="Name" [(ngModel)]="editCar.Name">
                 </div>
                 <div class="uk-margin">
                     <input class="uk-input" type="text" placeholder="Origin" name="Origin" [(ngModel)]="editCar.Origin">
@@ -66,19 +71,17 @@
                     <input class="uk-input" type="text" placeholder="Price" name="Price" [(ngModel)]="editCar.Price">
                 </div>
                 <div class="uk-margin">
-                    <input class="uk-input" type="text" placeholder="Currency" name="Price" [(ngModel)]="editCar.Currency">
+                    <input class="uk-input" type="text" placeholder="Currency" name="Currency"
+                        [(ngModel)]="editCar.Currency">
                 </div>
-
-                <!-- <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                    <label><input class="uk-radio" type="radio" name="USD" checked [(ngModel)]="addCar.Currency"> USD</label>
-                    <label><input class="uk-radio" type="radio" name="EUR" [(ngModel)]="addCar.Currency"> EUR</label>
-                </div> -->
             </fieldset>
         </form>
 
         <p class="uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <button class="uk-button uk-button-primary uk-modal-close" type="button" (click)='onEditCar()'>Save</button>
+            <button class="uk-button uk-button-default uk-modal-close" type="button"
+                style="margin-right: 20px;">Cancel</button>
+            <button class="uk-button uk-button-primary uk-modal-close btn-success" type="button"
+                (click)='onEditCar()'>Save</button>
         </p>
     </div>
 </div>
@@ -88,8 +91,10 @@
         <h2 class="uk-modal-title">Delete car</h2>
         <legend class="uk-legend">Are you sure?</legend>
         <p class="uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <button class="uk-button uk-button-danger" type="button" (click)="onDeleteCar()">Delete</button>
+            <button class="uk-button uk-button-default uk-modal-close" type="button"
+                style="margin-right: 20px;">Cancel</button>
+            <button class="uk-button uk-button-danger uk-modal-close" type="button"
+                (click)="onDeleteCar()">Delete</button>
         </p>
     </div>
 </div>

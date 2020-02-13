@@ -1,0 +1,30 @@
+.uk-button {
+    border-radius: 20px;
+    min-width: 100px;
+}
+
+.sort-row {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.uk-button.btn-success {
+    background-color: #71b02f;
+    color: #ffffff;
+}
+
+.pagination-wrapper {
+    padding-top: 10px;
+}
+
+.uk-navbar-container {
+    background-color: #f7f7f7 !important;
+}
+
+.uk-icon {
+    margin-right: 5px;
+}
+
+.delCart:hover {
+    cursor: pointer;
+}

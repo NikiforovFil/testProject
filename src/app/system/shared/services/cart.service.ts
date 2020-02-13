@@ -6,24 +6,21 @@ import { Car } from '../component/models/car.model';
 import { BaseApi } from './base-api';
 
 @Injectable()
-export class CarService extends BaseApi {
+export class CartService extends BaseApi {
     constructor(public http: HttpClient) {
         super(http)
     }
-    getCars(): Observable<Car[]> {
-        return this.get('cars');
+    private Url = 'cart';
+    getCart(): Observable<Car[]> {
+        return this.get(this.Url);
     };
 
-    addCars(car: Car) {
-        return this.post('cars', car);
+    addToCart(car: Car) {
+        return this.post(this.Url, car);
     }
 
-    editCars(car: Car) {
-        return this.put('cars', car);
-    }
-
-    deleteCars(id: number) {
-        return this.delete('cars', id);
+    deleteFromCart(id: number) {
+        return this.delete(this.Url, id);
     }
 
 } 

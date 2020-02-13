@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-html, body{
-    background-color: grey;
-    height: 100%;
+
+@font-face {
+    font-family: 'Proxima Nova Light';
+    src: url('../src/assets/ProximaNova-Light.eot');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    background-color: #ffffff;
+    height: auto;
+    font-family: 'Proxima Nova Light';
+}
+
+h1, h2, h3 {
+    font-family: 'Proxima Nova Light' !important;
 }
